@@ -1,0 +1,93 @@
+.board-main { 
+  height: 600px;
+  width: 600px;
+  border-radius: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.chess-square {
+  height: 12.5%;
+  width: 12.5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.chess-square-coord {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 0.75rem;
+}
+
+.color-white {
+  background: #ABff2A;
+}
+
+.color-black {
+  background: #540622;
+}
+
+.piece {
+  height: 90%;
+  width: 90%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: 10;
+}
+
+.piece.react-draggable-dragging { 
+  z-index: 11;
+}
+
+.piece-BR {
+  background-image: url("./../images/chess-images/br.png");
+}
+
+.piece-BN {
+  background-image: url("./../images/chess-images/bn.png");
+}
+
+.piece-BB {
+  background-image: url("./../images/chess-images/bb.png");
+}
+
+.piece-BK {
+  background-image: url("./../images/chess-images/bk.png");
+}
+
+.piece-BQ {
+  background-image: url("./../images/chess-images/bq.png");
+}
+
+.piece-BP {
+  background-image: url("./../images/chess-images/bp.png");
+}
+
+.piece-WR {
+  background-image: url("./../images/chess-images/wr.png");
+}
+
+.piece-WN {
+  background-image: url("./../images/chess-images/wn.png");
+}
+
+.piece-WB {
+  background-image: url("./../images/chess-images/wb.png");
+}
+
+.piece-WK {
+  background-image: url("./../images/chess-images/wk.png");
+}
+
+.piece-WQ {
+  background-image: url("./../images/chess-images/wq.png");
+}
+
+.piece-WP {
+  background-image: url("./../images/chess-images/wp.png");
+}
+
