@@ -1,6 +1,7 @@
 import React from 'react';
 import Piece from './Piece';
 interface Props {
+  highlightedSquares: Array<string>
   setHighlightedSquares: any,
   currentPieces: object,
   setActiveDrag: any,
@@ -10,6 +11,7 @@ interface Props {
   id: 'string'
 }
 const Square = ({
+  highlightedSquares,
   setHighlightedSquares,
   currentPieces,
   setActiveDrag,
@@ -23,6 +25,7 @@ const Square = ({
         <div className="chess-square-coord">{id}</div>
         {piece 
           ? <Piece
+              highlightedSquares={highlightedSquares}
               setHighlightedSquares={setHighlightedSquares}
               currentPieces={currentPieces} 
               setActiveDrag={setActiveDrag} 

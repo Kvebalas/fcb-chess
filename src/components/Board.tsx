@@ -26,7 +26,17 @@ const Board = () => {
         let currentColor = color;
         if (currentCoord === highlightedSquares.find(e => e === currentCoord)) currentColor = currentColor + 'h';
         return (
-          <Square setHighlightedSquares={setHighlightedSquares} currentPieces={currentPieces} setActiveDrag={setActiveDrag} key={i} id={currentCoord} color={currentColor} piece={currentPieces[currentCoord]} setNewPieces={setNewPieces}/>
+          <Square 
+            highlightedSquares={highlightedSquares} 
+            setHighlightedSquares={setHighlightedSquares} 
+            currentPieces={currentPieces} 
+            setActiveDrag={setActiveDrag} 
+            key={i} 
+            id={currentCoord} 
+            color={currentColor} 
+            piece={currentPieces[currentCoord]} 
+            setNewPieces={setNewPieces}
+          />
         )
       })}
     </div>

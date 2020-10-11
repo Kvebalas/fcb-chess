@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import Draggable from 'react-draggable';
 
 interface Props {
+  highlightedSquares: Array<String>
   setHighlightedSquares: any,
   currentPieces: any,
   setActiveDrag: any,
@@ -11,7 +12,7 @@ interface Props {
 }
 
 
-const Piece = ({setHighlightedSquares, currentPieces, setActiveDrag, setNewPieces, piece, squareId} : Props) => {
+const Piece = ({highlightedSquares, setHighlightedSquares, currentPieces, setActiveDrag, setNewPieces, piece, squareId} : Props) => {
   const boardOffsetTop: any = document.getElementById("thechess")?.offsetTop;
   const pieceRef: any = React.createRef();
   const letterArray = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
@@ -72,7 +73,6 @@ const Piece = ({setHighlightedSquares, currentPieces, setActiveDrag, setNewPiece
 
   useEffect(() => {
     // Update the document title using the browser API
-    //console.log(pieceRef);
   });
   const onStart = (e: any, position: any) => {
     setActiveDrag(true);
@@ -83,14 +83,20 @@ const Piece = ({setHighlightedSquares, currentPieces, setActiveDrag, setNewPiece
   };
 
   const onStop = ({clientX, clientY}: any, position: any) => {
+    debugger;
     const pieceName: string = pieceRef.current.id;
     const fromWhichSquare: any = position.node.offsetParent.id;
     const toWhichSquare: any = getDiff(clientX, clientY-boardOffsetTop, fromWhichSquare);
+    const isLegalStep: any = highlightedSquares.find(element => element === toWhichSquare);
+    console.log(isLegalStep);
     if (currentPieces[toWhichSquare]?.startsWith(pieceName[0])) {
-      console.log("Illegal move")
+      console.log("You try capturing your own piece")
       setNewPieces(pieceName, fromWhichSquare, fromWhichSquare);
-    } else {
+    } else if(isLegalStep) {
       setNewPieces(pieceName, fromWhichSquare, toWhichSquare);
+    } else {
+      console.log("You moved illegaly")
+      setNewPieces(pieceName, fromWhichSquare, fromWhichSquare);
     }
     setHighlightedSquares([]);
   };
