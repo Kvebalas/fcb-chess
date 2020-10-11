@@ -103,3 +103,9 @@
   text-align: center;
   width: 600px;
 }
+
+.main {
+  background-image: url("../images/chess-images/barca.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+}

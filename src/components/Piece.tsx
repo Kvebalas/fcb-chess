@@ -83,7 +83,6 @@ const Piece = ({highlightedSquares, setHighlightedSquares, currentPieces, setAct
   };
 
   const onStop = ({clientX, clientY}: any, position: any) => {
-    debugger;
     const pieceName: string = pieceRef.current.id;
     const fromWhichSquare: any = position.node.offsetParent.id;
     const toWhichSquare: any = getDiff(clientX, clientY-boardOffsetTop, fromWhichSquare);
