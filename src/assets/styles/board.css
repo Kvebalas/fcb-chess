@@ -99,3 +99,7 @@
   background-image: url("./../images/chess-images/wp.png");
 }
 
+.centered-text {
+  text-align: center;
+  width: 600px;
+}
