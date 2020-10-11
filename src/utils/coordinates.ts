@@ -13,7 +13,6 @@ export const colorArray: any = () => {
     }
     toggler = !toggler;
   }
-  console.log('colors')
   return colorArr;
 }
 export const coordArray: any = () => {
