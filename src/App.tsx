@@ -5,7 +5,7 @@ import Blackcook from './assets/images/chess-images/abc.png';
 
 function App() {
   return (
-    <div>
+    <div className="main"> 
       <h2 className="centered-text">Mindes Chess!</h2>
       <img src={Blackcook} alt="abc" />
       <Board />
