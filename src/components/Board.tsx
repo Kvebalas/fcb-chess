@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
 import Square from './Square';
 // import ChessInit from './../utils/chess-init.json';
+import {colorArray, coordArray} from './../utils/coordinates';
 import InitialPieces from './../utils/initialPosition.json';
 import './../assets/styles/board.css';
-const ROW_COUNT = 8;
-
 const Board = () => {
   const [activeDrag, setActiveDrag]: any = useState(false);
   const [currentPieces, setCurrentPieces]: any = useState(InitialPieces)
-  const letterArray = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
-
+  const [highlightedSquares, setHighlightedSquares] = useState([]);
   const setNewPieces: any = (piece: string = 'BP', from: string = 'B1', to: string = 'C5') => {
     const pieceCopy = currentPieces;
     pieceCopy[from] = null;
@@ -19,52 +17,19 @@ const Board = () => {
     }
     setCurrentPieces({...pieceCopy});
   }
+  const colorArr: any = colorArray();
 
-  const getColorArr: any = () => {
-    let colorArray: any = [];
-    let toggler = false;
-    
-    for (let i = 1; i <= ROW_COUNT; i++) {      
-      for (let j = 0; j < letterArray.length; j++) {
-        if (toggler) {
-          colorArray.push(j % 2 === 1 ? "white" : "black")
-        } else {
-          colorArray.push(j % 2 === 1 ? "black" : "white")
-        } 
-
-      }
-      toggler = !toggler;
-    }
-
-    return colorArray;
-  }
-
-  const colorArray: any = getColorArr();
-
-  const getPieceArray: any = () => {
-    const pieces: any = [];
-    const coords: any = [];
-      for (let i: any = ROW_COUNT; i >= 1; i--) {
-        for (let j:any = 0; j < letterArray.length; j++) {      
-        const coord: any = `${letterArray[j]}${i}`;
-        const piece: any = currentPieces[coord];
-        pieces.push(piece);
-        coords.push(coord);
-      }
-    }
-
-    return {pieces, coords};
-  }
-  console.log(currentPieces, 'ALIO');
-   return (
+  return (
     <div className="board-main" id="thechess">
-      {colorArray.map((data: string, i: number) => {
+      {colorArr.map((color: string, i: number) => {
+        const currentCoord = coordArray()[i];
+        let currentColor = color;
+        if (currentCoord === highlightedSquares.find(e => e === currentCoord)) currentColor = currentColor + 'h';
         return (
-          <Square setActiveDrag={setActiveDrag} key={i} id={getPieceArray().coords[i]} color={data} piece={getPieceArray().pieces[i]} setNewPieces={setNewPieces}/>
+          <Square setHighlightedSquares={setHighlightedSquares} currentPieces={currentPieces} setActiveDrag={setActiveDrag} key={i} id={currentCoord} color={currentColor} piece={currentPieces[currentCoord]} setNewPieces={setNewPieces}/>
         )
       })}
     </div>
   )
 }
-
 export default Board;

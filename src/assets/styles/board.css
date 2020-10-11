@@ -24,11 +24,19 @@
 }
 
 .color-white {
-  background: #ABff2A;
+  background: #dfd8d1;
+}
+
+.color-whiteh {
+  background: #8d7053;
 }
 
 .color-black {
-  background: #540622;
+  background: #663300;
+}
+
+.color-blackh {
+  background: #3f2001;
 }
 
 .piece {
