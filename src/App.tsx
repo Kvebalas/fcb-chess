@@ -1,6 +1,6 @@
 import React from 'react';
 import Board from '../src/components/Board';
-import Blackcook from './assets/images/chess-images/abc.png';
+import Blackcook from './assets/images/chess-images/abc1.jpg';
 
 
 function App() {
@@ -17,18 +17,19 @@ function App() {
   }
   return (
     <div className="main"> 
-      <h2 className="centered-text">Mindes Chess!</h2>
-      <label htmlFor="">Password:</label>
+      <h2 className="centered-text">Barca Chess!</h2>
+      <br/>
+      <label className="centered-text" htmlFor="">Slaptazodis:</label>
+      <br/>
       <input onChange={(e)=>validator(e)} type="text"/>
       <br/>
       <button disabled={isDisabled} onClick={()=> setOpen(true)} >Play!</button>
       <br/>
     
-      <img src={Blackcook} alt="abc" />
       {
         open
           ? <Board />
-          : <div>Neteisingas slaptazodis</div>
+          : <div className="centered-text" >Neteisingas slaptazodis</div>
       }
       
     </div>

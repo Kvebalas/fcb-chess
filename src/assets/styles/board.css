@@ -105,12 +105,14 @@
 }
 
 .centered-text {
+  color: rgb(32, 13, 201);color: #d81c0e;
   text-align: center;
   width: 600px;
 }
 
 .main {
-  background-image: url("../images/chess-images/barca.png");
+  background-image: url("../images/chess-images/abc2.jpg");
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
 }
+
