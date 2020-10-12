@@ -109,8 +109,23 @@
   width: 600px;
 }
 
-.main {
-  background-image: url("../images/chess-images/barca.png");
-  background-repeat: no-repeat;
-  background-size: contain;
+.site-header{
+  text-align: center;
+  width: 100%;
 }
+
+.chess-login{
+  margin: 0 auto;
+  width: 300px;
+}
+
+.white-text { 
+  color: #fff;
+}
+
+.main { 
+  background-image: url("../images/chess-images/abc2.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
