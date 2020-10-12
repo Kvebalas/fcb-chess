@@ -17,9 +17,9 @@ function App() {
   }
   return (
     <div className="main"> 
-      <h2 className="centered-text">Barca Chess!</h2>
+      <h2 className="body" >Barca Chess!</h2>
       <br/>
-      <label className="centered-text" htmlFor="">Slaptazodis:</label>
+      <label className="body" htmlFor="">Slaptazodis:</label>
       <br/>
       <input onChange={(e)=>validator(e)} type="text"/>
       <br/>
@@ -29,7 +29,7 @@ function App() {
       {
         open
           ? <Board />
-          : <div className="centered-text" >Neteisingas slaptazodis</div>
+          : <div className="body" >Neteisingas slaptazodis</div>
       }
       
     </div>
