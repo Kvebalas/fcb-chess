@@ -17,19 +17,19 @@ function App() {
   }
   return (
     <div className="main"> 
-      <h2 className="body" >Barca Chess!</h2>
-      <br/>
-      <label className="body" htmlFor="">Slaptazodis:</label>
-      <br/>
-      <input onChange={(e)=>validator(e)} type="text"/>
-      <br/>
-      <button disabled={isDisabled} onClick={()=> setOpen(true)} >Play!</button>
-      <br/>
+      <h2 className="site-header white-text"  >Barca Chess!</h2>
+        { !open&& <div className="chess-login white-text">
+          <label  htmlFor="">Slaptazodis:</label>
+          <br/>
+          <input onChange={(e)=>validator(e)} type="text"/>
+          < br/>
+          <button disabled={isDisabled} onClick={()=> setOpen(true)} >Play!</button>
+        </div>}
     
       {
         open
           ? <Board />
-          : <div className="body" >Neteisingas slaptazodis</div>
+          : <div className="white-text chess-login">Neteisingas slaptazodis</div>
       }
       
     </div>
