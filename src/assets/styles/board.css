@@ -123,6 +123,14 @@
   color: #fff;
 }
 
+.button {  
+  padding: 5px 58px;
+  text-align: center;
+  color: #1a00af;
+  display: inline-block;
+  font-size: 25px;
+}
+
 .main { 
   background-image: url("../images/chess-images/abc2.jpg");
   background-repeat: no-repeat;
