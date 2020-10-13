@@ -23,7 +23,7 @@ function App() {
           <br/>
           <input onChange={(e)=>validator(e)} type="text"/>
           < br/>
-          <button disabled={isDisabled} onClick={()=> setOpen(true)} >Play!</button>
+          <button className="button" disabled={isDisabled} onClick={()=> setOpen(true)} >Play!</button>
         </div>}
     
       {
