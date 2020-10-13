@@ -24,44 +24,56 @@ const Piece = ({highlightedSquares, setHighlightedSquares, currentPieces, setAct
  
 
   const highlighter = (piece: string, square: string) => {
+    const letterCharCode: number = square[0].charCodeAt(0);
+
     switch(piece) {
-      case "WP": 
+      case "WP": {
         console.log('Moved with White pawn');
-        if (square.endsWith('2')) {
-          const forward1 = `${square[0]}${parseInt(square[1], 10) + 1}`
-          const forward2 = `${square[0]}${parseInt(square[1], 10) + 2}`
-          let squaresToHighlight: any = [forward1, forward2]
-          setHighlightedSquares(squaresToHighlight);
-        } else {
-          const squaresToHighlight: Array<String> = [];
-          const letterCharCode: number = square[0].charCodeAt(0);
-          const forwardCoord: string = `${square[0]}${parseInt(square[1], 10) + 1}`
-          const isForwardEmpty: boolean = currentPieces[forwardCoord] === null;
-          const diagonalCoordLeft: string = String.fromCharCode(letterCharCode - 1) + (parseInt(square[1], 10) + 1);
-          const diagonalCoordRight: string = String.fromCharCode(letterCharCode + 1) + (parseInt(square[1], 10) + 1);
-
-          const isDiagonalAvailable = (coord: string, color: String) => {
-            if(currentPieces[coord] === null || currentPieces[coord][0].startsWith(color)){
-              return false;
-            } else {
-              return true;
-            }
+        const forwardCoord: string = `${square[0]}${parseInt(square[1], 10) + 1}`
+        const squaresToHighlight: Array<String> = [];
+        let diagonalCoordLeft: string = String.fromCharCode(letterCharCode - 1) + (parseInt(square[1], 10) + 1);
+        let diagonalCoordRight: string = String.fromCharCode(letterCharCode + 1) + (parseInt(square[1], 10) + 1);
+         
+        // Checks if diagonal contain 
+        const isDiagonalAvailable = (coord: string, color: String) => {
+          if(currentPieces[coord] === null || currentPieces[coord][0].startsWith(color)){
+            return false;
+          } else {
+            return true;
           }
-
-          if(isForwardEmpty) squaresToHighlight.push(forwardCoord);
+        }
+        
+        if (letterCharCode > 65) {
           if(isDiagonalAvailable(diagonalCoordLeft, piece[0])) {
             squaresToHighlight.push(diagonalCoordLeft)
           }
+        }
+        
+        if (letterCharCode < 72) {
           if(isDiagonalAvailable(diagonalCoordRight, piece[0])){
             squaresToHighlight.push(diagonalCoordRight)
           } 
-
+        }
+        
+        const isForwardEmpty: boolean = currentPieces[forwardCoord] === null;
+        if(isForwardEmpty) squaresToHighlight.push(forwardCoord);
+         
+        if (square.endsWith('2')) {
+          const forward2 = `${square[0]}${parseInt(square[1], 10) + 2}`
+          squaresToHighlight.push(forward2)
           setHighlightedSquares(squaresToHighlight);
         }
+
+        setHighlightedSquares(squaresToHighlight);
         break;
-      case "WR": 
+      }
+      case "WR": {
         console.log('Moved with White rook');
+
+
         break;
+      }
+       
       case "BP": 
         console.log('Moved with Black pawn');
         break;
@@ -87,12 +99,17 @@ const Piece = ({highlightedSquares, setHighlightedSquares, currentPieces, setAct
     const fromWhichSquare: any = position.node.offsetParent.id;
     const toWhichSquare: any = getDiff(clientX, clientY-boardOffsetTop, fromWhichSquare);
     const isLegalStep: any = highlightedSquares.find(element => element === toWhichSquare);
-    console.log(isLegalStep);
     if (currentPieces[toWhichSquare]?.startsWith(pieceName[0])) {
       console.log("You try capturing your own piece")
       setNewPieces(pieceName, fromWhichSquare, fromWhichSquare);
     } else if(isLegalStep) {
-      setNewPieces(pieceName, fromWhichSquare, toWhichSquare);
+      if (toWhichSquare.endsWith('8')) {
+        console.log('You promoted to queen');
+        const queenPiece = `${pieceName[0]}Q`;
+        setNewPieces(queenPiece, fromWhichSquare, toWhichSquare);
+      } else {
+        setNewPieces(pieceName, fromWhichSquare, toWhichSquare);
+      }
     } else {
       console.log("You moved illegaly")
       setNewPieces(pieceName, fromWhichSquare, fromWhichSquare);
