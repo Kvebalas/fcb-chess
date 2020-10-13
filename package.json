@@ -37,6 +37,7 @@
     ]
   },
   "devDependencies": {
+    "prettier": "2.1.2",
     "react-draggable": "^4.4.3"
   }
 }
