@@ -25,12 +25,16 @@ const Piece = ({highlightedSquares, setHighlightedSquares, currentPieces, setAct
 
   const highlighter = (piece: string, square: string) => {
     const letterCharCode: number = square[0].charCodeAt(0);
+    const leftCharCode: number = 65; 
+    const rightCharCode: number = 72;
+    const upCharCode: number = 8;
+    const downCharCode: number = 1;
+    const squaresToHighlight: Array<String> = [];
 
     switch(piece) {
       case "WP": {
         console.log('Moved with White pawn');
         const forwardCoord: string = `${square[0]}${parseInt(square[1], 10) + 1}`
-        const squaresToHighlight: Array<String> = [];
         let diagonalCoordLeft: string = String.fromCharCode(letterCharCode - 1) + (parseInt(square[1], 10) + 1);
         let diagonalCoordRight: string = String.fromCharCode(letterCharCode + 1) + (parseInt(square[1], 10) + 1);
          
@@ -43,13 +47,13 @@ const Piece = ({highlightedSquares, setHighlightedSquares, currentPieces, setAct
           }
         }
         
-        if (letterCharCode > 65) {
+        if (letterCharCode > leftCharCode) {
           if(isDiagonalAvailable(diagonalCoordLeft, piece[0])) {
             squaresToHighlight.push(diagonalCoordLeft)
           }
         }
         
-        if (letterCharCode < 72) {
+        if (letterCharCode < rightCharCode) {
           if(isDiagonalAvailable(diagonalCoordRight, piece[0])){
             squaresToHighlight.push(diagonalCoordRight)
           } 
@@ -68,9 +72,50 @@ const Piece = ({highlightedSquares, setHighlightedSquares, currentPieces, setAct
         break;
       }
       case "WR": {
-        console.log('Moved with White rook');
+        const line = parseInt(square[1], 10);
+        let coords = [];
 
+          
+        for(let i: number = line + 1; i <= upCharCode; i+=1) {
+          const forwardSquare: string = `${square[0]}${i}`
+          if (currentPieces[forwardSquare] === null) {
+            coords.push(forwardSquare)
+          } else if (!currentPieces[forwardSquare].startsWith(piece[0])){
+            coords.push(forwardSquare);
+            break
+          } else break;
+        }
 
+        for(let i: number = line - 1 ; i >= downCharCode; i-=1) {
+          const downSquare: string = `${square[0]}${i}`
+          if (currentPieces[downSquare] === null) {
+            coords.push(downSquare)
+          } else if (!currentPieces[downSquare].startsWith(piece[0])){
+            coords.push(downSquare);
+            break
+          } else break;
+        }
+
+        for(let i: number = letterCharCode - 1 ; i >= leftCharCode; i-=1) {
+          const leftSquare: string = `${String.fromCharCode(i)}${square[1]}`
+          if (currentPieces[leftSquare] === null) {
+            coords.push(leftSquare)
+          } else if (!currentPieces[leftSquare].startsWith(piece[0])){
+            coords.push(leftSquare);
+            break
+          } else break;
+        }
+
+        for(let i: number = letterCharCode + 1 ; i <= rightCharCode; i+=1) {
+          const rightSquare: string = `${String.fromCharCode(i)}${square[1]}`
+          if (currentPieces[rightSquare] === null) {
+            coords.push(rightSquare)
+          } else if (!currentPieces[rightSquare].startsWith(piece[0])){
+            coords.push(rightSquare);
+            break
+          } else break;
+        }
+        setHighlightedSquares(coords)
         break;
       }
        
@@ -103,7 +148,8 @@ const Piece = ({highlightedSquares, setHighlightedSquares, currentPieces, setAct
       console.log("You try capturing your own piece")
       setNewPieces(pieceName, fromWhichSquare, fromWhichSquare);
     } else if(isLegalStep) {
-      if (toWhichSquare.endsWith('8')) {
+      // Promote to queen
+      if (pieceName.endsWith('P') && toWhichSquare.endsWith('8')) {
         console.log('You promoted to queen');
         const queenPiece = `${pieceName[0]}Q`;
         setNewPieces(queenPiece, fromWhichSquare, toWhichSquare);
