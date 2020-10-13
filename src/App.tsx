@@ -5,16 +5,18 @@ import Blackcook from './assets/images/chess-images/abc1.jpg';
 
 function App() {
   const [ open, setOpen ] = React.useState(false);
-  const [isDisabled, setIsDisabled] = React.useState(true)
-  const validator = (e:any) => {
-    const inputValue=e.target.value;
-    if(inputValue==="sveiki")
-    {
-      setIsDisabled(false);
-    }
-    
-    
+  const [inputValue, setInputValue] = React.useState('');
+  const paspaudziau = () => {
+   if (inputValue==="sveiki") {
+    setOpen(true);
+   } else {
+    console.log('va bybi');
+   }
   }
+  const validator = (e:any) => {
+    setInputValue(e.target.value);
+  }
+
   return (
     <div className="main"> 
       <h2 className="site-header white-text"  >Barca Chess!</h2>
@@ -23,7 +25,7 @@ function App() {
           <br/>
           <input onChange={(e)=>validator(e)} type="text"/>
           < br/>
-          <button className="button" disabled={isDisabled} onClick={()=> setOpen(true)} >Play!</button>
+          <button className="button" onClick={paspaudziau} >Play!</button>
         </div>}
     
       {
