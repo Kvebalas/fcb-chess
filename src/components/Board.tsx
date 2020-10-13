@@ -1,22 +1,26 @@
-import React, { useState } from 'react';
-import Square from './Square';
+import React, { useState } from "react";
+import Square from "./Square";
 // import ChessInit from './../utils/chess-init.json';
-import {colorArray, coordArray} from './../utils/coordinates';
-import InitialPieces from './../utils/initialPosition.json';
-import './../assets/styles/board.css';
+import { colorArray, coordArray } from "./../utils/coordinates";
+import InitialPieces from "./../utils/initialPosition.json";
+import "./../assets/styles/board.css";
 const Board = () => {
   const [activeDrag, setActiveDrag]: any = useState(false);
-  const [currentPieces, setCurrentPieces]: any = useState(InitialPieces)
-  const [highlightedSquares, setHighlightedSquares] = useState([]);
-  const setNewPieces: any = (piece: string = 'BP', from: string = 'B1', to: string = 'C5') => {
+  const [currentPieces, setCurrentPieces]: any = useState(InitialPieces);
+  const [highlightedSquares, setHighlightedSquares] = useState(["G6", "H8"]);
+  const setNewPieces: any = (
+    piece: string = "BP",
+    from: string = "B1",
+    to: string = "C5"
+  ) => {
     const pieceCopy = currentPieces;
     pieceCopy[from] = null;
     pieceCopy[to] = piece;
     if (from === to) {
-      setCurrentPieces({})
+      setCurrentPieces({});
     }
-    setCurrentPieces({...pieceCopy});
-  }
+    setCurrentPieces({ ...pieceCopy });
+  };
   const colorArr: any = colorArray();
 
   return (
@@ -24,22 +28,23 @@ const Board = () => {
       {colorArr.map((color: string, i: number) => {
         const currentCoord = coordArray()[i];
         let currentColor = color;
-        if (currentCoord === highlightedSquares.find(e => e === currentCoord)) currentColor = currentColor + 'h';
+        if (currentCoord === highlightedSquares.find((e) => e === currentCoord))
+          currentColor = currentColor + "h";
         return (
-          <Square 
-            highlightedSquares={highlightedSquares} 
-            setHighlightedSquares={setHighlightedSquares} 
-            currentPieces={currentPieces} 
-            setActiveDrag={setActiveDrag} 
-            key={i} 
-            id={currentCoord} 
-            color={currentColor} 
-            piece={currentPieces[currentCoord]} 
+          <Square
+            highlightedSquares={highlightedSquares}
+            setHighlightedSquares={setHighlightedSquares}
+            currentPieces={currentPieces}
+            setActiveDrag={setActiveDrag}
+            key={i}
+            id={currentCoord}
+            color={currentColor}
+            piece={currentPieces[currentCoord]}
             setNewPieces={setNewPieces}
           />
-        )
+        );
       })}
     </div>
-  )
-}
+  );
+};
 export default Board;
