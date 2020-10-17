@@ -9,7 +9,9 @@
 .board-main {
   height: 600px;
   width: 600px;
-  border-radius: 2rem;
+  margin: 0 auto;
+  border-radius: 6px;
+  overflow: hidden;
   display: flex;
   flex-wrap: wrap;
   position: relative;
@@ -118,25 +120,60 @@
   width: 100%;
 }
 
-.chess-login {
-  margin: 0 auto;
-  width: 300px;
-}
-
 .white-text {
   color: #fff;
 }
 
-.button {
+.submit-button {
+  outline: none;
+  border: 3px solid #004d98;
+  border-radius: 6px;
+  background-color: #edbb00;
   padding: 5px 58px;
   text-align: center;
-  color: #1a00af;
+  color: #a50044;
   display: inline-block;
   font-size: 25px;
+}
+
+.submit-button:hover {
+  transition: all 0.2s linear;
+  background-color: #ffd22f;
+  color: #004d98;
+}
+
+.submit-button:active {
+  transition: all 0.1s linear;
+  background-color: #004d98;
+  color: #ffd22f;
 }
 
 .main {
   background-image: url("../images/chess-images/abc2.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+  padding: 100px;
+}
+
+.login-form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-input {
+  border: 3px solid #a50044;
+  border-radius: 6px;
+  color: #edbb00;
+  outline: none;
+  background-color: #004d98;
+  line-height: 32px;
+  margin-bottom: 12px;
+  text-indent: 12px;
+  font-weight: bold;
+}
+
+.login-input:focus {
+  border-color: #edbb00;
 }

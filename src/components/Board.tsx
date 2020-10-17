@@ -7,7 +7,7 @@ import "./../assets/styles/board.css";
 const Board = () => {
   const [activeDrag, setActiveDrag]: any = useState(false);
   const [currentPieces, setCurrentPieces]: any = useState(InitialPieces);
-  const [highlightedSquares, setHighlightedSquares] = useState(["G6", "H8"]);
+  const [highlightedSquares, setHighlightedSquares] = useState([]);
   const setNewPieces: any = (
     piece: string = "BP",
     from: string = "B1",

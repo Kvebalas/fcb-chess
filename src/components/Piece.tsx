@@ -8,7 +8,6 @@ interface Props {
   setActiveDrag: any;
   setNewPieces: any;
   piece: string;
-  squareId: any;
 }
 
 const Piece = ({
@@ -18,12 +17,14 @@ const Piece = ({
   setActiveDrag,
   setNewPieces,
   piece,
-  squareId,
 }: Props) => {
   const boardOffsetTop: any = document.getElementById("thechess")?.offsetTop;
+  const boarder: any = document.getElementById("thechess")
+  const boardOffsetLeft: any = document.getElementById("thechess")?.offsetLeft;
+
   const pieceRef: any = React.createRef();
   const letterArray = ["A", "B", "C", "D", "E", "F", "G", "H"];
-  const getDiff: any = (x: any, y: any, fromSquare: any) => {
+  const getDiff: any = (x: any, y: any, fromSquare: any, squareHeight: number) : string => {
     const xDiff = Math.floor(x / 75);
     const yDiff = 8 - Math.floor(y / 75);
     return `${letterArray[xDiff]}${yDiff}`;
@@ -156,12 +157,16 @@ const Piece = ({
   };
 
   const onStop = ({ clientX, clientY }: any, position: any) => {
-    const pieceName: string = pieceRef.current.id;
-    const fromWhichSquare: any = position.node.offsetParent.id;
-    const toWhichSquare: any = getDiff(
-      clientX,
+    const pieceNode = pieceRef.current;
+    const pieceName: string = pieceNode.id;
+    const squareHeight: number = pieceNode.offsetParent.clientHeight;
+    const fromWhichSquare: string = position.node.offsetParent.id;
+    debugger;
+    const toWhichSquare: string = getDiff(
+      clientX - boardOffsetLeft,
       clientY - boardOffsetTop,
-      fromWhichSquare
+      fromWhichSquare,
+      squareHeight
     );
     const isLegalStep: any = highlightedSquares.find(
       (element) => element === toWhichSquare

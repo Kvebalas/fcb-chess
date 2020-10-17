@@ -29,7 +29,6 @@ const Square = ({
           setHighlightedSquares={setHighlightedSquares}
           currentPieces={currentPieces}
           setActiveDrag={setActiveDrag}
-          squareId={id}
           setNewPieces={setNewPieces}
           piece={piece}
         />
