@@ -5,7 +5,7 @@ interface Props {
 const LoginForm = ({setOpen}: Props) => {
   const paspaudziau = (e: any) => {
     e.preventDefault();
-    if (e.target[0].value === "sveiki" && e.target[1].value == "sveiki") {
+    if (e.target[0].value === "sveiki" && e.target[1].value === "sveiki") {
       setOpen(true);
     } else {
       console.log("va bybi");
