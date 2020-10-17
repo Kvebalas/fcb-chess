@@ -4,7 +4,6 @@ interface Props {
   highlightedSquares: Array<string>;
   setHighlightedSquares: any;
   currentPieces: object;
-  setActiveDrag: any;
   setNewPieces: any;
   color: string;
   piece: string | null;
@@ -14,7 +13,6 @@ const Square = ({
   highlightedSquares,
   setHighlightedSquares,
   currentPieces,
-  setActiveDrag,
   setNewPieces,
   color,
   piece,
@@ -28,7 +26,6 @@ const Square = ({
           highlightedSquares={highlightedSquares}
           setHighlightedSquares={setHighlightedSquares}
           currentPieces={currentPieces}
-          setActiveDrag={setActiveDrag}
           setNewPieces={setNewPieces}
           piece={piece}
         />

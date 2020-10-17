@@ -5,7 +5,6 @@ interface Props {
   highlightedSquares: Array<String>;
   setHighlightedSquares: any;
   currentPieces: any;
-  setActiveDrag: any;
   setNewPieces: any;
   piece: string;
 }
@@ -14,7 +13,6 @@ const Piece = ({
   highlightedSquares,
   setHighlightedSquares,
   currentPieces,
-  setActiveDrag,
   setNewPieces,
   piece,
 }: Props) => {
@@ -147,7 +145,6 @@ const Piece = ({
     // Update the document title using the browser API
   });
   const onStart = (e: any, position: any) => {
-    setActiveDrag(true);
     const pieceName: string = pieceRef.current.id;
     const fromWhichSquare: string = position.node.offsetParent.id;
     highlighter(piece, fromWhichSquare);

@@ -5,7 +5,6 @@ import { colorArray, coordArray } from "./../utils/coordinates";
 import InitialPieces from "./../utils/initialPosition.json";
 import "./../assets/styles/board.css";
 const Board = () => {
-  const [activeDrag, setActiveDrag]: any = useState(false);
   const [currentPieces, setCurrentPieces]: any = useState(InitialPieces);
   const [highlightedSquares, setHighlightedSquares] = useState([]);
   const setNewPieces: any = (
@@ -35,7 +34,6 @@ const Board = () => {
             highlightedSquares={highlightedSquares}
             setHighlightedSquares={setHighlightedSquares}
             currentPieces={currentPieces}
-            setActiveDrag={setActiveDrag}
             key={i}
             id={currentCoord}
             color={currentColor}
